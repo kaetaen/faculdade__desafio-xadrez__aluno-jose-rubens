@@ -3,5 +3,5 @@
 ## Descrição
 
 Desafio: simulação de movimentação de peças de xadrez
-Nivel: novato
+Nivel: aventureiro
 Aluno: José Rubens dos Santos
