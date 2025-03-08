@@ -1,44 +1,75 @@
 #include <stdio.h>
 
-int main() {
+const int PERCURSO_PECA = 5;
+const int MOVIMENTO_INICIAL = 1;
+const int PERCURSO_CAVALO_VERTICAL = 2;
 
-    int MOVIMENTACAO_CASAS = 5;
+void movimentoTorre(int step) {
+    if (step > PERCURSO_PECA) {
+        printf("\n");
+        return;
+    }
+    
+    printf("Direita\n");
+    movimentoTorre(step + 1);
+}
 
-    // determina os primeiros movimentos do cavalo, que são na vertical.
-    int MOVIMENTAÇÃO_CAVALO_INICIAL  = 2;
+void movimentoBispo(int step) {
 
-    // Movimento da Torre (5 casas para a direita) - usando for
-    printf("Movimento da Torre:\n");
-    for (int i = 1; i <= MOVIMENTACAO_CASAS; i++) {
-        printf("Direita (%d) \n", i);
+    if (step > PERCURSO_PECA) {
+        printf("\n");
+        return;
     }
 
-    // Movimento do Bispo (5 casas na diagonal para cima e à direita) - usando while
-    printf("\nMovimento do Bispo:\n");
-    int count = 1;
-    while (count <= MOVIMENTACAO_CASAS) {
-        printf("Cima, Direita (%d)\n", count);
-        count++;
+    while (1) {
+        printf("Cima \n");
+
+        while (1) {
+            printf("Direita \n");
+            break;
+        }
+
+        break;
     }
 
-    // Movimento da Rainha (8 casas para a esquerda) - usando do-while
-    printf("\nMovimento da Rainha:\n");
-    int steps = 1;
-    do {
-        printf("Esquerda (%d) \n", steps);
-        steps++;
-    } while (steps <= MOVIMENTACAO_CASAS);
+    step = step + 1;
 
-    // Movimento do Cavalo (2 casas para baixo e 1 casa para a esquerda) - usando loops aninhados
-    printf("\nMovimento do Cavalo:\n");
-    for (int i = 1; i <= MOVIMENTAÇÃO_CAVALO_INICIAL; i++) {
-        printf("Baixo (%d) \n", i);
+    movimentoBispo(step);
+}
+
+void movimentoRainha(int step) {
+    if (step > PERCURSO_PECA) {
+        printf("\n");
+        return;
+    }
+    printf("Esquerda\n");
+    movimentoRainha(step + 1);
+}
+
+void movimentoCavalo() {
+    for (int i = 1; i <= PERCURSO_CAVALO_VERTICAL; i++) {
+        printf("Cima \n");
         for (int j = 1; j <= 1; j++) {
             if (i == 2) {
-                printf("Esquerda (%d) \n", j);
+                printf("Direita\n");
             }
         }
     }
+}
+
+int main() {
+    printf("Movimento do BISPO: \n");
+    movimentoBispo(MOVIMENTO_INICIAL);
+    
+    printf("Movimento do TORRE: \n");
+    movimentoTorre(MOVIMENTO_INICIAL);
+    
+    printf("Movimento do RAINHA: \n");
+    movimentoRainha(MOVIMENTO_INICIAL);
+
+    // Movimento do Cavalo (2 casas para baixo e 1 casa para a esquerda) - usando loops aninhados
+    printf("\nMovimento do CAVALO:\n");
+    movimentoCavalo();
 
     return 0;
 }
